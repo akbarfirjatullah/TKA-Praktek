@@ -1,0 +1,229 @@
+const bcrypt = require('bcryptjs');
+const prisma = require('../config/prisma');
+
+// Menambah pengguna baru
+const createUser = async (req, res) => {
+    try {
+        const { name, email, password, role, classOrPosition } = req.body;
+
+        // Validasi field yang wajib diisi
+        if (!name || !email || !password || !role) {
+            return res.status(400).json({
+                success: false,
+                message: 'Nama, email, password, dan role wajib diisi'
+            });
+        }
+
+        // Validasi role
+        const validRoles = ['siswa', 'karyawan', 'admin'];
+        if (!validRoles.includes(role)) {
+            return res.status(400).json({
+                success: false,
+                message: 'Role harus: siswa, karyawan, atau admin'
+            });
+        }
+
+        // Cek apakah email sudah terdaftar
+        const existingUser = await prisma.user.findUnique({
+            where: { email }
+        });
+
+        if (existingUser) {
+            return res.status(409).json({
+                success: false,
+                message: 'Email sudah terdaftar'
+            });
+        }
+
+        // Hash password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Buat user baru
+        const user = await prisma.user.create({
+            data: {
+                name,
+                email,
+                password: hashedPassword,
+                role,
+                classOrPosition: classOrPosition || null
+            }
+        });
+
+        // Hapus password dari response
+        const { password: _, ...userWithoutPassword } = user;
+
+        res.status(201).json({
+            success: true,
+            message: 'Pengguna berhasil ditambahkan',
+            data: userWithoutPassword
+        });
+
+    } catch (error) {
+        console.error('Create user error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Terjadi kesalahan server'
+        });
+    }
+};
+
+// Mengambil data pengguna berdasarkan ID
+const getUserById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const user = await prisma.user.findUnique({
+            where: { id: parseInt(id) },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                role: true,
+                classOrPosition: true,
+                createdAt: true
+            }
+        });
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: 'Pengguna tidak ditemukan'
+            });
+        }
+
+        res.json({
+            success: true,
+            data: user
+        });
+
+    } catch (error) {
+        console.error('Get user error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Terjadi kesalahan server'
+        });
+    }
+};
+
+// Mengubah data pengguna
+const updateUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name, email, password, role, classOrPosition } = req.body;
+
+        // Cek apakah user ada
+        const existingUser = await prisma.user.findUnique({
+            where: { id: parseInt(id) }
+        });
+
+        if (!existingUser) {
+            return res.status(404).json({
+                success: false,
+                message: 'Pengguna tidak ditemukan'
+            });
+        }
+
+        // Validasi role jika diisi
+        if (role) {
+            const validRoles = ['siswa', 'karyawan', 'admin'];
+            if (!validRoles.includes(role)) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Role harus: siswa, karyawan, atau admin'
+                });
+            }
+        }
+
+        // Cek apakah email baru sudah digunakan
+        if (email && email !== existingUser.email) {
+            const emailExists = await prisma.user.findUnique({
+                where: { email }
+            });
+
+            if (emailExists) {
+                return res.status(409).json({
+                    success: false,
+                    message: 'Email sudah digunakan'
+                });
+            }
+        }
+
+        // Siapkan data untuk update
+        const updateData = {};
+        if (name) updateData.name = name;
+        if (email) updateData.email = email;
+        if (role) updateData.role = role;
+        if (classOrPosition !== undefined) updateData.classOrPosition = classOrPosition;
+        
+        // Hash password baru jika diisi
+        if (password) {
+            updateData.password = await bcrypt.hash(password, 10);
+        }
+
+        // Update user
+        const updatedUser = await prisma.user.update({
+            where: { id: parseInt(id) },
+            data: updateData,
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                role: true,
+                classOrPosition: true,
+                createdAt: true
+            }
+        });
+
+        res.json({
+            success: true,
+            message: 'Data pengguna berhasil diubah',
+            data: updatedUser
+        });
+
+    } catch (error) {
+        console.error('Update user error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Terjadi kesalahan server'
+        });
+    }
+};
+
+// Mengambil semua pengguna (bonus)
+const getAllUsers = async (req, res) => {
+    try {
+        const users = await prisma.user.findMany({
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                role: true,
+                classOrPosition: true,
+                createdAt: true
+            },
+            orderBy: {
+                createdAt: 'desc'
+            }
+        });
+
+        res.json({
+            success: true,
+            count: users.length,
+            data: users
+        });
+
+    } catch (error) {
+        console.error('Get all users error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Terjadi kesalahan server'
+        });
+    }
+};
+
+module.exports = {
+    createUser,
+    getUserById,
+    updateUser,
+    getAllUsers
+};
