@@ -15,8 +15,8 @@ Function ini melakukan analisis mendalam tingkat kehadiran. Bisa filter berdasar
 
 **Endpoint:** `POST /api/attendance/analysis`
 
-**Screenshot 1 - Analisis Tanpa Group:**
+**Screenshot 1 - Analisis By Role:**
 ![Analysis Without Group](https://github.com/akbarfirjatullah/TKA-Praktek/blob/main/SOAL%20UKL/Screenshots/WhatsApp%20Image%202025-11-04%20at%2013.15.07_0a5ffc5c.jpg)
 
-**Screenshot 2 - Analisis dengan Group by Role:**
+**Screenshot 2 - Analisis By Class:**
 ![Analysis With Group by Role](https://github.com/akbarfirjatullah/TKA-Praktek/blob/main/SOAL%20UKL/Screenshots/WhatsApp%20Image%202025-11-04%20at%2013.15.31_51290a6e.jpg)
