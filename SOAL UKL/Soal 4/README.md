@@ -16,4 +16,5 @@ Function ini mengupdate data user yang sudah ada. Semua field bersifat opsional,
 **Endpoint:** `PUT /api/users/:id`
 
 **Screenshot:**
-![Update User - Request & Response](screenshots/soal4-update-user.png)
+![Update User - Request & Response](https://github.com/akbarfirjatullah/TKA-Praktek/blob/main/SOAL%20UKL/Screenshots/WhatsApp%20Image%202025-11-04%20at%2013.07.36_0dfd6ca5.jpg)
+
