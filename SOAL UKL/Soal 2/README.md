@@ -1,6 +1,6 @@
 ## Soal 2: Menambah Pengguna Baru
 
-**File:** [`src/controllers/userController.js`](src/controllers/userController.js) - Function `createUser`
+**File:** [src/controllers/userController.js](https://github.com/akbarfirjatullah/TKA-Praktek/blob/main/src/controllers/userController.js) - Function `createUser`
 
 **Penjelasan:**
 Function ini membuat user baru dalam sistem. Melakukan validasi input, memastikan email tidak duplikat, meng-hash password untuk keamanan, lalu menyimpan ke database.
