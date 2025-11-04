@@ -14,4 +14,5 @@ Function ini mengambil detail data satu pengguna berdasarkan ID yang diberikan. 
 **Endpoint:** `GET /api/users/:id`
 
 **Screenshot:**
-![Get User by ID - Response](screenshots/soal3-get-user.png)
+![Get User by ID - Response](https://github.com/akbarfirjatullah/TKA-Praktek/blob/main/SOAL%20UKL/Screenshots/WhatsApp%20Image%202025-11-04%20at%2013.06.52_df3eeee0.jpg)
+
