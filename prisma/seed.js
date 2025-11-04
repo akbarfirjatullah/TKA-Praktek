@@ -20,7 +20,7 @@ async function main() {
         }
     });
 
-    console.log('✅ User test berhasil dibuat:', user);
+    console.log('User test berhasil dibuat:', user);
 }
 
 main()

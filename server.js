@@ -26,7 +26,7 @@ app.use('/api/auth', require('./src/routes/authRoutes'));
 app.use('/api/users', require('./src/routes/userRoutes'));
 app.use('/api/attendance', require('./src/routes/attendanceRoutes'));
 
-// Error handling middleware
+// Middleware menangani error
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ message: 'Terjadi kesalahan!' });
@@ -34,5 +34,5 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`🚀 Server berjalan di http://localhost:${PORT}`);
+    console.log(`Server berjalan di http://localhost:${PORT}`);
 });
