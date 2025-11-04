@@ -15,4 +15,5 @@ File ini menangani proses login pengguna. Sistem menerima email dan password, la
 **Endpoint:** `POST /api/auth/login`
 
 **Screenshot:**
-![Login Screenshot](screenshots/soal1-login.png)
+![Login Screenshot](https://github.com/akbarfirjatullah/TKA-Praktek/blob/main/SOAL%20UKL/Screenshots/WhatsApp%20Image%202025-11-04%20at%2013.04.25_c3f10980.jpg)
+
