@@ -15,4 +15,5 @@ Function ini membuat user baru dalam sistem. Melakukan validasi input, memastika
 **Endpoint:** `POST /api/users`
 
 **Screenshot:**
-![Create User - Request & Response](screenshots/soal2-create-user.png)
+![Create User - Request & Response](https://github.com/akbarfirjatullah/TKA-Praktek/blob/main/SOAL%20UKL/Screenshots/WhatsApp%20Image%202025-11-04%20at%2013.06.20_f69a91f3.jpg)
+
