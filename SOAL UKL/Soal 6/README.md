@@ -15,4 +15,5 @@ Function ini menampilkan semua riwayat presensi dari satu user, diurutkan dari t
 **Endpoint:** `GET /api/attendance/history/:user_id`
 
 **Screenshot:**
-![Attendance History - Response](screenshots/soal6-attendance-history.png)
+![Attendance History - Response](https://github.com/akbarfirjatullah/TKA-Praktek/blob/main/SOAL%20UKL/Screenshots/WhatsApp%20Image%202025-11-04%20at%2013.12.22_0d065376.jpg)
+
