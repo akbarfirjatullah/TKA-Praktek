@@ -16,4 +16,5 @@ Function ini mencatat kehadiran pengguna pada hari tertentu. Sistem memastikan u
 **Endpoint:** `POST /api/attendance`
 
 **Screenshot:**
-![Record Attendance - Request & Response](screenshots/soal5-record-attendance.png)
+![Record Attendance - Request & Response](https://github.com/akbarfirjatullah/TKA-Praktek/blob/main/SOAL%20UKL/Screenshots/WhatsApp%20Image%202025-11-04%20at%2013.10.11_cee22cf5.jpg)
+
