@@ -16,4 +16,5 @@ Function ini membuat ringkasan/rekap kehadiran bulanan untuk satu user. Menghitu
 **Endpoint:** `GET /api/attendance/summary/:user_id?year=2024&month=11`
 
 **Screenshot:**
-![Monthly Summary - Response](screenshots/soal7-monthly-summary.png)
+![Monthly Summary - Response](https://github.com/akbarfirjatullah/TKA-Praktek/blob/main/SOAL%20UKL/Screenshots/WhatsApp%20Image%202025-11-04%20at%2013.13.09_3dc5dcdb.jpg)
+
